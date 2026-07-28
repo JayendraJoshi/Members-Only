@@ -23,4 +23,4 @@ const insertUser = async (
   ]);
 };
 
-module.exports = { insertUser };
+module.exports = { insertUser, pool };
