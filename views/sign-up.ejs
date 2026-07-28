@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Membery only</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <%- include("partials/errors.ejs") %>
+      <form method="post" action="/sign-up">
+        <label for="firstname">Firstname</label>
+        <input type="text" name="firstname" id="firstname" />
+        <label for="lastname">Lastname</label>
+        <input type="text" name="lastname" id="firstname" />
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+        <label for="passwordConfirmation">Confirm Password</label>
+        <input
+          type="password"
+          name="passwordConfirmation"
+          id="passwordConfirmation"
+        />
+        <button type="submit">Sign Up</button>
+      </form>
+    </main>
+    <footer></footer>
+  </body>
+</html>
