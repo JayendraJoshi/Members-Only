@@ -45,4 +45,15 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-module.exports = { passport };
+const authenticateUser = (req, res, next) => {
+  console.log("Session:", req.session);
+  console.log("User:", req.user);
+  console.log("Authenticated:", req.isAuthenticated());
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    throw new Error("Not authenticated!");
+  }
+};
+
+module.exports = { passport, authenticateUser };

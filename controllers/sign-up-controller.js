@@ -1,4 +1,3 @@
-const createUser = (req, res) => {};
 const db = require("../config/database");
 const { body, validationResult, matchedData } = require("express-validator");
 const bcrypt = require("bcryptjs");

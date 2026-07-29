@@ -23,4 +23,9 @@ const insertUser = async (
   ]);
 };
 
-module.exports = { insertUser, pool };
+const updateMembershipStatusToMember = async (id) => {
+  const query = `UPDATE users SET membership_status = 'Member' WHERE id = $1;`;
+  await pool.query(query, [id]);
+};
+
+module.exports = { insertUser, pool, updateMembershipStatusToMember };
