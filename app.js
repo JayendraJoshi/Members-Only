@@ -3,6 +3,7 @@ const app = express();
 const path = require("node:path");
 const signUpController = require("./controllers/sign-up-controller");
 const memberShipController = require("./controllers/membership-controller");
+const messageController = require("./controllers/message-controller");
 const passport = require("./config/passport").passport;
 const authenticateUser = require("./config/passport").authenticateUser;
 const session = require("express-session");
@@ -12,6 +13,7 @@ const PORT = 3000;
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
@@ -20,8 +22,11 @@ app.use(
     saveUninitialized: false,
   }),
 );
-app.use(passport.initialize());
 app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 app.get("/", (req, res) => {
   res.send("<h1>Welcome!</h1>");
@@ -39,6 +44,12 @@ app.get("/login", (req, res) => {
 app.get("/become-a-member", authenticateUser, (req, res) => {
   res.render("become-a-member");
 });
+
+app.get("/home", (req, res) => {
+  res.render("home");
+});
+
+app.post("/home", messageController.addMessage);
 
 app.post(
   "/login",
