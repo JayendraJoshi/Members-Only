@@ -20,15 +20,18 @@
             <% if(locals.messages){%>
                 <% messages.forEach(message=>{%>
                     <div class="message-card">
-                        <p><%= messages.timestamp %></p>
-                        <p><%= messages.title %></p>
-                        <p><%= messages.text %></p>
+                        <%if(locals.currentUser){%>
+                            <%= locals.currentUser.username %>
+                              <p><%= message.timestamp %></p>
+                            <%}%>
+                        <p><%= message.title %></p>
+                        <p><%= message.text %></p>
                     </div>
                 <%})%>
             <%}%>
         </div>
         <dialog>
-            <form class="message-form" method="post" action="/home">
+            <form class="message-form" method="post" action="/">
                 <div class="error-container"></div>
                 <label for="title">Title</label>
                 <input id="title" name="title">

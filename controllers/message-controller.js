@@ -15,13 +15,21 @@ const validateMessage = [
 const addMessage = [
   validateMessage,
   async (req, res) => {
-    const errors = await validationResult(req);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(401).json({ errors: errors.array() });
     } else {
+      const { title, text } = matchedData(req);
+      const user = req.user;
+      await db.insertMessage(title, text, user.id);
       return res.status(200).json({ success: true });
     }
   },
 ];
 
-module.exports = { addMessage };
+const renderIndexPage = async (req, res) => {
+  const messages = await db.selectAllMessages();
+  res.render("index", { messages: messages });
+};
+
+module.exports = { addMessage, renderIndexPage };

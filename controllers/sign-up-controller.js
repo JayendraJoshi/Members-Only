@@ -20,9 +20,9 @@ const validateSignUpData = [
     .notEmpty()
     .withMessage("Firstname input can't be empty")
     .isAlpha()
-    .withMessage("Lastname can only contain alphabet letters.")
+    .withMessage("Firstname can only contain alphabet letters.")
     .isLength({ max: 100 })
-    .withMessage("firstname can't be longer than 100 characters"),
+    .withMessage("Firstname can't be longer than 100 characters"),
   body("lastname")
     .trim()
     .notEmpty()
@@ -30,21 +30,21 @@ const validateSignUpData = [
     .isAlpha()
     .withMessage("Lastname can only contain alphabet letters.")
     .isLength({ max: 100 })
-    .withMessage("firstname can't be longer than 100 characters"),
+    .withMessage("Lastname can't be longer than 100 characters"),
   body("username")
     .trim()
     .notEmpty()
     .withMessage("Username input can't be empty")
     .isLength({ max: 100 })
-    .withMessage("firstname can't be longer than 100 characters"),
+    .withMessage("Username can't be longer than 100 characters"),
 ];
 
 const signUpUser = [
   validateSignUpData,
-  async (req, res) => {
+  async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(401).render("sign-up", {
+      return res.status(401).render("sign-up", {
         errors: errors.array(),
       });
     }
@@ -52,17 +52,18 @@ const signUpUser = [
       matchedData(req);
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
-      await db.insertUser(
+      const user = await db.insertUser(
         firstname,
         lastname,
         username,
         hashedPassword,
-        "Not a member",
       );
-      res.status(200).send("<h1>User created!</h1>");
-      //redirect to homepage
+      req.login(user, (error) => {
+        if (error) return next(error);
+        return res.status(200).redirect("/");
+      });
     } catch (error) {
-      res.status(500).render("sign-up", { errors: [{ msg: error.message }] });
+      next(error);
     }
   },
 ];

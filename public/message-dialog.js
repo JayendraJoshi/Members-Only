@@ -2,10 +2,11 @@ const dialog = document.querySelector("dialog");
 const openDialogButton = document.querySelector(".open-message-dialog button");
 const closeDialogButton = document.querySelector("dialog .cancel-button");
 const messageForm = document.querySelector(".message-form");
-
-openDialogButton.addEventListener("click", (event) => {
-  dialog.showModal();
-});
+if (openDialogButton) {
+  openDialogButton.addEventListener("click", (event) => {
+    dialog.showModal();
+  });
+}
 closeDialogButton.addEventListener("click", (event) => {
   dialog.close();
 });
@@ -32,5 +33,5 @@ messageForm.addEventListener("submit", async (event) => {
     return;
   }
   dialog.close();
-  window.location.href = "/home";
+  window.location.reload();
 });

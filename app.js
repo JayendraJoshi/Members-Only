@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("node:path");
 const signUpController = require("./controllers/sign-up-controller");
-const memberShipController = require("./controllers/membership-controller");
+const membershipController = require("./controllers/membership-controller");
 const messageController = require("./controllers/message-controller");
 const passport = require("./config/passport").passport;
 const authenticateUser = require("./config/passport").authenticateUser;
@@ -24,13 +24,13 @@ app.use(
 );
 app.use(passport.session());
 app.use((req, res, next) => {
+  req.session.membershipAccess ||= { member: false, admin: false };
   res.locals.currentUser = req.user;
+  res.locals.membershipAccess = req.session.membershipAccess;
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send("<h1>Welcome!</h1>");
-});
+app.get("/", messageController.renderIndexPage);
 
 app.get("/sign-up", (req, res) => {
   res.render("sign-up");
@@ -41,36 +41,44 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get("/become-a-member", authenticateUser, (req, res) => {
-  res.render("become-a-member");
-});
+app.get(
+  "/membership",
+  authenticateUser,
+  membershipController.renderMembershipPage,
+);
 
-app.get("/home", (req, res) => {
-  res.render("home");
-});
-
-app.post("/home", messageController.addMessage);
+app.post("/", messageController.addMessage);
 
 app.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login", session: true }),
-  (req, res) => {
-    res.send("<h1>You logged in!</h1>");
-    console.log(req.user);
-    //Call controller to redirect to homepage
-  },
+  messageController.renderIndexPage,
 );
 
 app.post(
-  "/become-a-member",
+  "/membership/member/status",
   authenticateUser,
-  memberShipController.giveUserMembership,
+  membershipController.enableMemberAccess,
 );
+
+app.post(
+  "/membership/admin/status",
+  authenticateUser,
+  membershipController.enableAdminAccess,
+);
+
+app.post("/membership/member/change", membershipController.toggleMemberStatus);
+app.post("/membership/admin/change", membershipController.toggleAdminStatus);
 
 app.post("/sign-up", signUpController.signUpUser);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on Port:${PORT}`);
+});
+
+app.use((error, req, res, next) => {
+  console.error(error);
+  res.status(500).json({ error: error });
 });
 
 module.exports = { app };
