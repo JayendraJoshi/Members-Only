@@ -26,6 +26,11 @@
                             <%}%>
                         <p><%= message.title %></p>
                         <p><%= message.text %></p>
+                        <%if(locals.currentUser.isadmin){%>
+                            <form action="/message/delete/<%= message.id %>" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <%}%>
                     </div>
                 <%})%>
             <%}%>

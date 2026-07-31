@@ -32,4 +32,10 @@ const renderIndexPage = async (req, res) => {
   res.render("index", { messages: messages });
 };
 
-module.exports = { addMessage, renderIndexPage };
+const deleteMessage = async (req, res) => {
+  const message_id = req.params.id;
+  await db.deleteMessage(message_id);
+  res.status(200).redirect("/");
+};
+
+module.exports = { addMessage, renderIndexPage, deleteMessage };

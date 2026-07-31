@@ -48,6 +48,11 @@ const selectAllMessages = async () => {
   return result.rows;
 };
 
+const deleteMessage = async (message_id) => {
+  const query = `DELETE FROM messages WHERE id = $1;`;
+  await pool.query(query, [message_id]);
+};
+
 module.exports = {
   insertUser,
   pool,
@@ -57,4 +62,5 @@ module.exports = {
   setIsMemberFalse,
   setIsAdminTrue,
   setIsAdminFalse,
+  deleteMessage,
 };

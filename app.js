@@ -72,6 +72,8 @@ app.post("/membership/admin/change", membershipController.toggleAdminStatus);
 
 app.post("/sign-up", signUpController.signUpUser);
 
+app.post("/message/delete/:id", messageController.deleteMessage);
+
 app.listen(PORT, () => {
   console.log(`Server is listening on Port:${PORT}`);
 });
