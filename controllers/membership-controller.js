@@ -15,11 +15,11 @@ const validateMemberPassword = [
 const validateAdminPassword = [
   body("password")
     .notEmpty()
-    .withMessage("Secret password input can't be empty.")
+    .withMessage("Input can't be empty.")
     .custom((value, { req }) => {
       return value === process.env.ADMIN_PASSWORD;
     })
-    .withMessage("Wrong password, please read the hint and try again"),
+    .withMessage("Wrong password, please try again"),
 ];
 
 const enableMemberAccess = [

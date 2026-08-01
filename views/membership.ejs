@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Members only</title>
     <script defer src="/js/membership.js"></script>
+    <link rel="stylesheet" href="/styles/profile.css" />
   </head>
   <body>
     <div class="header-wrapper">
@@ -12,9 +13,9 @@
         <nav>
           <h1>Members Only Club</h1>
           <div class="link-container">
-            <a href="/">Home</a>
+            <a href="/"><img src="/icons/messages.svg" /></a>
             <form method="post" action="/logout">
-              <button type="submit">Logout</button>
+              <button type="submit"><img src="/icons/logout.svg" /></button>
             </form>
           </div>
         </nav>
@@ -22,16 +23,19 @@
     </div>
     <div class="main-wrapper">
       <main>
-        <div class="member-form-container">
-          <h2>Enter password to manage member status</h2>
+        <div class="form-container">
+          <h2>Manage member status</h2>
           <% if(!locals.membershipAccess?.member){%>
           <form action="/membership/member/status" method="post">
             <% if(locals.memberErrors){%> <%- include("partials/errors.ejs")%>
             <%}%>
-            <label for="memberPassword">password</label>
-            <p>(Hint: It's "a secret")</p>
-            <input type="password" id="memberPassword" name="password" />
-            <button type="submit">Apply</button>
+
+            <label for="memberPassword"
+              ><p>(Hint: It's "a secret")</p>
+              Password
+              <input type="password" id="memberPassword" name="password"
+            /></label>
+            <button type="submit">Submit</button>
           </form>
           <%}%>
           <% if(locals.membershipAccess?.member){%>
@@ -41,25 +45,24 @@
           >
             <p class="status-message"></p>
             <div class="error-container"></div>
-            <h2>Become a member</h2>
             <label class="toggle"></label>
             <input type="checkbox" name="memberToggle" class="member-toggle" />
             <span class="slider"></span>
           </div>
+          <%}%>
         </div>
-        <%}%>
-        <div class="admin-form-container">
-          <h2>Enter password to manage admin status</h2>
+        <div class="form-container">
+          <h2>Manage admin status</h2>
           <% if(!locals.membershipAccess?.admin){%>
           <form action="/membership/admin/status" method="post">
             <% if(locals.adminErrors){%> <%- include("partials/errors.ejs")%>
             <%}%>
-            <label for="adminPassword">password</label>
-            <p>
-              (Hint: It has 5 letters and starts with 'a' and ends with 'n'")
-            </p>
-            <input type="password" id="adminPassword" name="password" />
-            <button type="submit">Apply</button>
+            <label for="adminPassword"
+              >Password
+              <input type="password" id="adminPassword" name="password"
+            /></label>
+
+            <button type="submit">Submit</button>
           </form>
           <%}%>
           <% if(locals.membershipAccess?.admin){%>
@@ -69,7 +72,6 @@
           >
             <p class="status-message"></p>
             <div class="error-container"></div>
-            <h2>Become an admin</h2>
             <label class="toggle"></label>
             <input type="checkbox" name="adminToggle" class="admin-toggle" />
             <span class="slider"></span>
@@ -78,8 +80,6 @@
         </div>
       </main>
     </div>
-    <div class="footer-wrapper">
-      <footer></footer>
-    </div>
+    <div class="footer-wrapper"><%- include("partials/footer") %></div>
   </body>
 </html>

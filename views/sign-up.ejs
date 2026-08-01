@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Membery only</title>
+    <link rel="stylesheet" href="/styles/login.css" />
   </head>
   <body>
     <div class="header-wrapper">
@@ -11,37 +12,44 @@
         <nav>
           <h1>Members Only Club</h1>
           <div class="link-container">
-            <a href="/">Home</a>
+            <a href="/"><img src="/icons/messages.svg" /></a>
           </div>
         </nav>
       </header>
     </div>
-    <main>
-      <%- include("partials/errors.ejs") %>
-      <form method="post" action="/sign-up">
-        <%if(locals.failedUserCreation){%>
-        <p>We couldn't sign you up right now, please try again later.</p>
-        <%}%>
-        <label for="firstname">Firstname</label>
-        <input type="text" name="firstname" id="firstname" />
-        <label for="lastname">Lastname</label>
-        <input type="text" name="lastname" id="lastname" />
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" autocomplete="off" />
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" />
-        <label for="passwordConfirmation">Confirm Password</label>
-        <input
-          type="password"
-          name="passwordConfirmation"
-          id="passwordConfirmation"
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      <a href="/login">Log in</a>
-    </main>
-    <div class="footer-wrapper">
-      <footer></footer>
+    <div class="main-wrapper">
+      <main>
+        <%- include("partials/errors.ejs") %>
+        <form method="post" action="/sign-up">
+          <h1>Sign Up</h1>
+          <%if(locals.failedUserCreation){%>
+          <p>We couldn't sign you up right now, please try again later.</p>
+          <%}%>
+          <label for="firstname"
+            >Firstname <input type="text" name="firstname" id="firstname"
+          /></label>
+          <label for="lastname"
+            >Lastname <input type="text" name="lastname" id="lastname"
+          /></label>
+          <label for="username"
+            >Username
+            <input type="text" name="username" id="username" autocomplete="off"
+          /></label>
+          <label for="password"
+            >Password <input type="password" name="password" id="password"
+          /></label>
+          <label for="passwordConfirmation"
+            >Confirm Password
+            <input
+              type="password"
+              name="passwordConfirmation"
+              id="passwordConfirmation"
+          /></label>
+          <button type="submit">Sign Up</button>
+        </form>
+        <a href="/login">Log in</a>
+      </main>
     </div>
+    <div class="footer-wrapper"><%- include("partials/footer") %></div>
   </body>
 </html>

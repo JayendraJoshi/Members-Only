@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Members Only</title>
+    <link rel="stylesheet" href="/styles/login.css" />
   </head>
   <body>
     <div class="header-wrapper">
@@ -11,7 +12,7 @@
         <nav>
           <h1>Members Only Club</h1>
           <div class="link-container">
-            <a href="/">Home</a>
+            <a href="/"><img src="/icons/messages.svg" /></a>
           </div>
         </nav>
       </header>
@@ -23,17 +24,17 @@
           <% if(locals.failedLogin){%>
           <p>No matching User found, please try again.</p>
           <%}%>
-          <label for="username">Username</label>
-          <input id="username" name="username" />
-          <label for="password">Password</label>
-          <input id="password" name="password" />
+          <label for="username"
+            >Username<input id="username" name="username"
+          /></label>
+          <label for="password"
+            >Password <input id="password" name="password" type="password"
+          /></label>
           <button type="submit">Log in</button>
         </form>
         <p>No account yet? <a href="/sign-up">Sign Up</a></p>
       </main>
     </div>
-    <div class="footer-wrapper">
-      <footer></footer>
-    </div>
+    <div class="footer-wrapper"><%- include("partials/footer")%></div>
   </body>
 </html>

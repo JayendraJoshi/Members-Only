@@ -37,6 +37,7 @@ messageForm.addEventListener("submit", async (event) => {
       }),
     );
     errorContainer.replaceChildren(ul);
+    errorContainer.style.display = "block";
     return;
   }
   dialog.close();
