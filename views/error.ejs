@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members Only</title>
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <header>
+        <nav>
+          <h1>Members Only Club</h1>
+          <div class="link-container">
+            <% if(!locals.currentUser){ %>
+            <a href="/login">login</a>
+            <%}else{%>
+            <a href="/membership">Membership</a>
+            <form method="post" action="/logout">
+              <button type="submit">Logout</button>
+            </form>
+            <%}%>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <div class="main-wrapper">
+      <h1>Something went wrong...</h1>
+      <p>Navigate back to the <a href="/">home page</a></p>
+    </div>
+    <div class="footer-wrapper">
+      <footer></footer>
+    </div>
+  </body>
+</html>
