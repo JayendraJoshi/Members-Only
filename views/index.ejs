@@ -4,49 +4,73 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Members Only</title>
-   <script defer src="/message-dialog.js"></script>
+    <script defer src="/js/message-dialog.js"></script>
   </head>
   <body>
-    <header></header>
-    <main>
+    <div class="header-wrapper">
+      <header>
+        <nav>
+          <h1>Members Only Club</h1>
+          <div class="link-container">
+            <% if(!locals.currentUser){ %>
+            <a href="/login">login</a>
+            <%}else{%>
+            <a href="/membership">Membership</a>
+            <form method="post" action="/logout">
+              <button type="submit">Logout</button>
+            </form>
+            <%}%>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <div class="main-wrapper">
+      <main>
         <h1>Members Only</h1>
         <% if(locals.currentUser){ %>
-            <form class="open-message-dialog">
-                <label>Create a message</label>
-                <button type="button">Create</button>
-            </form>
-       <% }%>
+        <form class="open-message-dialog">
+          <label>Create a message</label>
+          <button type="button">Create</button>
+        </form>
+        <% }%>
         <div class="messages-container">
-            <% if(locals.messages){%>
-                <% messages.forEach(message=>{%>
-                    <div class="message-card">
-                        <%if(locals.currentUser){%>
-                            <%= locals.currentUser.username %>
-                              <p><%= message.timestamp %></p>
-                            <%}%>
-                        <p><%= message.title %></p>
-                        <p><%= message.text %></p>
-                        <%if(locals.currentUser.isadmin){%>
-                            <form action="/message/delete/<%= message.id %>" method="post">
-                                <button type="submit">Delete</button>
-                            </form>
-                        <%}%>
-                    </div>
-                <%})%>
+          <% if(locals.failedFetch){%>
+          <p>
+            We couldn't load the messages right now, please try again later.
+          </p>
+          <%}%>
+          <% if(locals.messages){%>
+          <% messages.forEach(message=>{%>
+          <div class="message-card">
+            <%if(locals.currentUser){%> <%= locals.currentUser.username %>
+            <p><%= message.timestamp %></p>
             <%}%>
+            <p><%= message.title %></p>
+            <p><%= message.text %></p>
+            <% if(locals.currentUser?.isadmin){%>
+            <form action="/message/delete/<%= message.id %>" method="post">
+              <button type="submit">Delete</button>
+            </form>
+            <%}%>
+          </div>
+          <%})%>
+          <%}%>
         </div>
         <dialog>
-            <form class="message-form" method="post" action="/">
-                <div class="error-container"></div>
-                <label for="title">Title</label>
-                <input id="title" name="title">
-                <label for="text">Text</label>
-                <input id="text" name="text">
-                <button class="cancel-button" type="button">Cancel</button>
-                <button class="add-button" type="submit">Add</button>
-            </form>
+          <form class="message-form" method="post" action="/">
+            <div class="error-container"></div>
+            <label for="title">Title</label>
+            <input id="title" name="title" />
+            <label for="text">Text</label>
+            <input id="text" name="text" />
+            <button class="cancel-button" type="button">Cancel</button>
+            <button class="add-button" type="submit">Add</button>
+          </form>
         </dialog>
-    </main>
-    <footer></footer>
+      </main>
+    </div>
+    <div class="footer-wrapper">
+      <footer></footer>
+    </div>
   </body>
 </html>

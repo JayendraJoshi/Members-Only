@@ -4,62 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Members only</title>
-   <script defer src="/membership.js"></script>
+    <script defer src="/js/membership.js"></script>
   </head>
   <body>
-    <header></header>
-    <main>
-      <div class="member-form-container">
-        <h2>Enter password to manage member status</h2>
-        <% if(!locals.membershipAccess?.member){%>
+    <div class="header-wrapper">
+      <header>
+        <nav>
+          <h1>Members Only Club</h1>
+          <div class="link-container">
+            <a href="/">Home</a>
+            <form method="post" action="/logout">
+              <button type="submit">Logout</button>
+            </form>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <div class="main-wrapper">
+      <main>
+        <div class="member-form-container">
+          <h2>Enter password to manage member status</h2>
+          <% if(!locals.membershipAccess?.member){%>
           <form action="/membership/member/status" method="post">
-         <% if(locals.memberErrors){%>
-          <%- include("partials/errors.ejs")%>
-         <%}%>
-          <label for="memberPassword">password</label>
-          <p>(Hint: It's "a secret")</p>
-          <input type="password" id="memberPassword" name="password" />
-          <button type="submit">Apply</button>
-        </form>
-        <%}%>
-        <% if(locals.membershipAccess?.member){%>
-           <div class="member-toggle-container" data-status="<%= locals.memberStatus ? 'true' : 'false' %>">
-              <p class="status-message"></p>
-            <div class="error-container"></div>
-          <h2>Become a member</h2>
-          <label class="toggle"></label>
-          <input type="checkbox" name="memberToggle" class="member-toggle"/>
-          <span class="slider"></span>
-        </div>
-      </div>
-        <%}%>
-       
-      <div class="admin-form-container">
-         <h2>Enter password to manage admin status</h2>
-        <% if(!locals.membershipAccess?.admin){%>
-          <form action="/membership/admin/status" method="post">
-          <% if(locals.adminErrors){%>
-             <%- include("partials/errors.ejs")%>
+            <% if(locals.memberErrors){%> <%- include("partials/errors.ejs")%>
+            <%}%>
+            <label for="memberPassword">password</label>
+            <p>(Hint: It's "a secret")</p>
+            <input type="password" id="memberPassword" name="password" />
+            <button type="submit">Apply</button>
+          </form>
           <%}%>
-          <label for="adminPassword">password</label>
-          <p>(Hint: It has 5 letters and starts with 'a' and ends with 'n'")</p>
-          <input type="password" id="adminPassword" name="password" />
-          <button type="submit">Apply</button>
-        </form>
-        <%}%>
-         <% if(locals.membershipAccess?.admin){%>
-           <div class="admin-toggle-container" data-status="<%= locals.adminStatus ? 'true' : 'false' %>">
+          <% if(locals.membershipAccess?.member){%>
+          <div
+            class="member-toggle-container"
+            data-status="<%= locals.memberStatus ? 'true' : 'false' %>"
+          >
             <p class="status-message"></p>
-          <div class="error-container"></div>
-          <h2>Become an admin</h2>
-          <label class="toggle"></label>
-          <input type="checkbox" name="adminToggle" class="admin-toggle"/>
-          <span class="slider"></span>
+            <div class="error-container"></div>
+            <h2>Become a member</h2>
+            <label class="toggle"></label>
+            <input type="checkbox" name="memberToggle" class="member-toggle" />
+            <span class="slider"></span>
+          </div>
         </div>
-      </div>
         <%}%>
-      </div>
-    </main>
-    <footer></footer>
+        <div class="admin-form-container">
+          <h2>Enter password to manage admin status</h2>
+          <% if(!locals.membershipAccess?.admin){%>
+          <form action="/membership/admin/status" method="post">
+            <% if(locals.adminErrors){%> <%- include("partials/errors.ejs")%>
+            <%}%>
+            <label for="adminPassword">password</label>
+            <p>
+              (Hint: It has 5 letters and starts with 'a' and ends with 'n'")
+            </p>
+            <input type="password" id="adminPassword" name="password" />
+            <button type="submit">Apply</button>
+          </form>
+          <%}%>
+          <% if(locals.membershipAccess?.admin){%>
+          <div
+            class="admin-toggle-container"
+            data-status="<%= locals.adminStatus ? 'true' : 'false' %>"
+          >
+            <p class="status-message"></p>
+            <div class="error-container"></div>
+            <h2>Become an admin</h2>
+            <label class="toggle"></label>
+            <input type="checkbox" name="adminToggle" class="admin-toggle" />
+            <span class="slider"></span>
+          </div>
+          <%}%>
+        </div>
+      </main>
+    </div>
+    <div class="footer-wrapper">
+      <footer></footer>
+    </div>
   </body>
 </html>

@@ -6,17 +6,31 @@
     <title>Members Only</title>
   </head>
   <body>
-    <header></header>
-    <main>
-      <h1>Login</h1>
-      <form method="post" action="/login">
-        <label for="username">Username</label>
-        <input id="username" name="username" />
-        <label for="password">Password</label>
-        <input id="password" name="password" />
-        <button type="submit">Log in</button>
-      </form>
-    </main>
-    <footer></footer>
+    <div class="header-wrapper">
+      <header>
+        <nav>
+          <h1>Members Only Club</h1>
+          <div class="link-container">
+            <a href="/">Home</a>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <div class="main-wrapper">
+      <main>
+        <h1>Login</h1>
+        <form method="post" action="/login">
+          <label for="username">Username</label>
+          <input id="username" name="username" />
+          <label for="password">Password</label>
+          <input id="password" name="password" />
+          <button type="submit">Log in</button>
+        </form>
+        <p>No account yet? <a href="/sign-up">Sign Up</a></p>
+      </main>
+    </div>
+    <div class="footer-wrapper">
+      <footer></footer>
+    </div>
   </body>
 </html>

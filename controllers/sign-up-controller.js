@@ -1,6 +1,6 @@
 const db = require("../config/database");
 const { body, validationResult, matchedData } = require("express-validator");
-const bcrypt = require("bcryptjs");
+const { hashPassword } = require("../libs/passwordUtils");
 
 const validateSignUpData = [
   body("password")
@@ -50,7 +50,7 @@ const signUpUser = [
     }
     const { firstname, lastname, username, password, passwordConfirmation } =
       matchedData(req);
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await hashPassword(password);
     try {
       const user = await db.insertUser(
         firstname,

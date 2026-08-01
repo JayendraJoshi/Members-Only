@@ -28,8 +28,13 @@ const addMessage = [
 ];
 
 const renderIndexPage = async (req, res) => {
-  const messages = await db.selectAllMessages();
-  res.render("index", { messages: messages });
+  try {
+    const messages = await db.selectAllMessages();
+    res.render("index", { messages: messages });
+  } catch (error) {
+    res.render("index", { messages: [], failedFetch: true });
+    console.error(error);
+  }
 };
 
 const deleteMessage = async (req, res) => {

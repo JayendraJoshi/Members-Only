@@ -37,7 +37,6 @@ app.get("/sign-up", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  //Call controller to render loginpage
   res.render("login");
 });
 
@@ -52,8 +51,17 @@ app.post("/", messageController.addMessage);
 app.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login", session: true }),
-  messageController.renderIndexPage,
+  (req, res) => {
+    res.redirect("/");
+  },
 );
+
+app.post("/logout", async (req, res, next) => {
+  req.logout((error) => {
+    if (error) next(error);
+    res.redirect("/");
+  });
+});
 
 app.post(
   "/membership/member/status",
