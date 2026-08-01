@@ -29,6 +29,7 @@
         <h1>Members Only</h1>
         <% if(locals.currentUser){ %>
         <form class="open-message-dialog">
+          <p class="server-error"></p>
           <label>Create a message</label>
           <button type="button">Create</button>
         </form>
@@ -42,7 +43,14 @@
           <% if(locals.messages){%>
           <% messages.forEach(message=>{%>
           <div class="message-card">
-            <%if(locals.currentUser){%> <%= locals.currentUser.username %>
+            <%if (locals.failedDeletion && locals.failedDeleteMessageId ===
+            message.id){%>
+            <p>
+              We couldn't delete the message right now, please try again later.
+            </p>
+            <%}%>
+            <%if(locals.currentUser){%>
+            <%= locals.currentUser.username %>
             <p><%= message.timestamp %></p>
             <%}%>
             <p><%= message.title %></p>

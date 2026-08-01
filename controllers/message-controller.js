@@ -15,14 +15,19 @@ const validateMessage = [
 const addMessage = [
   validateMessage,
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(401).json({ errors: errors.array() });
-    } else {
-      const { title, text } = matchedData(req);
-      const user = req.user;
-      await db.insertMessage(title, text, user.id);
-      return res.status(200).json({ success: true });
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      } else {
+        const { title, text } = matchedData(req);
+        const user = req.user;
+        await db.insertMessage(title, text, user.id);
+        return res.status(200).json({ success: true });
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error });
     }
   },
 ];
@@ -39,8 +44,18 @@ const renderIndexPage = async (req, res) => {
 
 const deleteMessage = async (req, res) => {
   const message_id = req.params.id;
-  await db.deleteMessage(message_id);
-  res.status(200).redirect("/");
+  try {
+    await db.deleteMessage(Number(message_id));
+    res.status(200).redirect("/");
+  } catch (error) {
+    const messages = await db.selectAllMessages();
+    console.error(error);
+    return res.render("index", {
+      failedDeletion: true,
+      failedDeleteMessageId: Number(message_id),
+      messages: messages,
+    });
+  }
 };
 
 module.exports = { addMessage, renderIndexPage, deleteMessage };

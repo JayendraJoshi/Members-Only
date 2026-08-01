@@ -21,6 +21,13 @@ messageForm.addEventListener("submit", async (event) => {
   });
   const data = await response.json();
   if (!response.ok) {
+    if (response.status === 500) {
+      const serverError = document.querySelector(".server-error");
+      serverError.textContent =
+        " We couldn't create the message right now, please try again later.";
+      dialog.close();
+      return;
+    }
     const ul = document.createElement("ul");
     ul.replaceChildren(
       ...data.errors.map((error) => {
