@@ -37,7 +37,7 @@ app.get("/sign-up", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", { failedLogin: req.query.failed === "1" });
 });
 
 app.get(
@@ -50,7 +50,10 @@ app.post("/", messageController.addMessage);
 
 app.post(
   "/login",
-  passport.authenticate("local", { failureRedirect: "/login", session: true }),
+  passport.authenticate("local", {
+    session: true,
+    failureRedirect: "/login?failed=1",
+  }),
   (req, res) => {
     res.redirect("/");
   },

@@ -64,7 +64,7 @@ const toggleMemberStatus = async (req, res, next) => {
       return res.status(200).json({ success: true });
     }
   } catch (error) {
-    return next(error);
+    return res.status(500).json({ error: error });
   }
 };
 
@@ -80,7 +80,7 @@ const toggleAdminStatus = async (req, res, next) => {
     }
     return res.status(200).json({ success: true });
   } catch (error) {
-    return next(error);
+    return res.status(500).json({ error: error });
   }
 };
 

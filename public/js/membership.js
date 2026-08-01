@@ -17,23 +17,27 @@ const adminToggleContainer = document.querySelector(".admin-toggle-container");
 if (memberToggle) {
   memberToggle.checked = memberToggleContainer.dataset.status === "true";
   memberToggle.addEventListener("change", async (event) => {
+    const previousChecked = !event.target.checked;
     memberErrorContainer.textContent = "";
     const params = new URLSearchParams({
       checked: String(event.target.checked),
     });
-    const response = await fetch("/membership/member/change", {
-      method: "post",
-      body: params,
-    });
-    const data = await response.json();
-    if (!response.ok) {
-      memberErrorContainer.replaceChildren(
-        ...data.errors.map((error) => {
-          const p = document.querySelector("p");
-          p.textContent = error.message;
-          return p;
-        }),
-      );
+    try {
+      const response = await fetch("/membership/member/change", {
+        method: "post",
+        body: params,
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Request failed");
+      }
+    } catch (error) {
+      console.error(error);
+      const p = document.createElement("p");
+      p.textContent =
+        "We couldn't change your member status right now, please try again later.";
+      memberErrorContainer.appendChild(p);
+      event.target.checked = previousChecked;
     }
   });
 }
@@ -41,23 +45,27 @@ if (memberToggle) {
 if (adminToggle) {
   adminToggle.checked = adminToggleContainer.dataset.status === "true";
   adminToggle.addEventListener("change", async (event) => {
+    const previousChecked = !event.target.checked;
     adminErrorContainer.textContent = "";
     const params = new URLSearchParams({
       checked: String(event.target.checked),
     });
-    const response = await fetch("/membership/admin/change", {
-      method: "post",
-      body: params,
-    });
-    const data = await response.json();
-    if (!response.ok) {
-      adminErrorContainer.replaceChildren(
-        ...data.errors.map((error) => {
-          const p = document.querySelector("p");
-          p.textContent = error.message;
-          return p;
-        }),
-      );
+    try {
+      const response = await fetch("/membership/admin/change", {
+        method: "post",
+        body: params,
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Request failed");
+      }
+    } catch (error) {
+      console.error(error);
+      const p = document.createElement("p");
+      p.textContent =
+        "We couldn't change your admin status right now, please try again later.";
+      adminErrorContainer.appendChild(p);
+      event.target.checked = previousChecked;
     }
   });
 }

@@ -27,7 +27,6 @@ passport.use(
     }
   }),
 );
-
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });

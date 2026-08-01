@@ -19,6 +19,9 @@
     <main>
       <%- include("partials/errors.ejs") %>
       <form method="post" action="/sign-up">
+        <%if(locals.failedUserCreation){%>
+        <p>We couldn't sign you up right now, please try again later.</p>
+        <%}%>
         <label for="firstname">Firstname</label>
         <input type="text" name="firstname" id="firstname" />
         <label for="lastname">Lastname</label>

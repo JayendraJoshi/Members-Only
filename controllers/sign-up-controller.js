@@ -44,14 +44,13 @@ const signUpUser = [
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(401).render("sign-up", {
+      return res.status(400).render("sign-up", {
         errors: errors.array(),
       });
     }
-    const { firstname, lastname, username, password, passwordConfirmation } =
-      matchedData(req);
-    const hashedPassword = await hashPassword(password);
     try {
+      const { firstname, lastname, username, password } = matchedData(req);
+      const hashedPassword = await hashPassword(password);
       const user = await db.insertUser(
         firstname,
         lastname,
@@ -63,7 +62,10 @@ const signUpUser = [
         return res.status(200).redirect("/");
       });
     } catch (error) {
-      next(error);
+      console.error(error);
+      return res.status(500).render("sign-up", {
+        failedUserCreation: true,
+      });
     }
   },
 ];

@@ -20,6 +20,9 @@
       <main>
         <h1>Login</h1>
         <form method="post" action="/login">
+          <% if(locals.failedLogin){%>
+          <p>No matching User found, please try again.</p>
+          <%}%>
           <label for="username">Username</label>
           <input id="username" name="username" />
           <label for="password">Password</label>
