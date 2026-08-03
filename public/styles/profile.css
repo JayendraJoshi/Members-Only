@@ -135,11 +135,11 @@ footer svg {
 }
 
 svg:hover {
-  fill: var(--gray70);
+  fill: var(--colora);
 }
 
 nav a:hover {
-  color: var(--gray70);
+  color: var(--colora);
 }
 
 nav button {
@@ -177,10 +177,10 @@ main {
   justify-content: center;
   gap: var(--space-1);
   margin: auto;
-  background-color: var(--colora2);
+  background-color: var(--colora);
   border-radius: var(--radius-basic);
   max-width: var(--max-width);
-  color: var(--gray10);
+  color: var(--gray90);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
@@ -220,13 +220,23 @@ main form input {
 }
 
 main button {
-  background-color: var(--colora);
-  color:var(--gray95);
+  background-color: var(--colora2);
+  color:var(--gray10);
   border-radius: var(--radius-basic); 
 }
 
 main button:hover{
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+}
+
+
+.admin-toggle, .member-toggle{
+    width: 1rem;
+    height:1rem;
+    accent-color: var(--colora);
+}
+input:hover{
+  cursor: pointer;
 }
 
 .footer-wrapper {

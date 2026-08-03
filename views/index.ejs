@@ -6,12 +6,15 @@
     <title>Members Only</title>
     <script defer src="/js/message-dialog.js"></script>
     <link rel="stylesheet" href="/styles/index.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+    </style>
   </head>
   <body>
     <div class="header-wrapper">
       <header>
         <nav>
-          <h1>Members Only Club</h1>
+          <h1><a href="/">Members Only Club</a></h1>
           <div class="link-container">
             <% if(!locals.currentUser){ %>
             <a href="/login"
@@ -53,7 +56,7 @@
         <% if(locals.currentUser){ %>
         <form class="open-message-dialog">
           <p class="server-error"></p>
-          <button type="button">
+          <button type="button" class="open-dialog-button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
               <path
@@ -78,21 +81,21 @@
               We couldn't delete the message right now, please try again later.
             </p>
             <%}%>
-            <%if(locals.currentUser?.ismember){%>
-            <div class="message-data-container">
+            <%if(locals.currentUser?.ismember || locals.currentUser?.isadmin){%>
+            <div class="message-data-container username-container">
               <p>Username</p>
               <%= locals.currentUser.username %>
             </div>
-            <div class="message-data-container">
+            <div class="message-data-container timestamp-container">
               <p>Timestamp</p>
               <p><%= message.timestamp %></p>
             </div>
             <%}%>
-            <div class="message-data-container">
+            <div class="message-data-container title-container">
               <p>Title</p>
               <p><%= message.title %></p>
             </div>
-            <div class="message-data-container">
+            <div class="message-data-container text-container">
               <p>Text</p>
               <p><%= message.text %></p>
             </div>

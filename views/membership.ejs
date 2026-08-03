@@ -41,7 +41,7 @@
     <div class="main-wrapper">
       <main>
         <div class="form-container">
-          <h2>Manage member status</h2>
+          <h2>Become a Member</h2>
           <% if(!locals.membershipAccess?.member){%>
           <form action="/membership/member/status" method="post">
             <% if(locals.memberErrors){%> <%- include("partials/errors.ejs")%>
@@ -62,14 +62,14 @@
           >
             <p class="status-message"></p>
             <div class="error-container"></div>
-            <label class="toggle"></label>
+            <label></label>
             <input type="checkbox" name="memberToggle" class="member-toggle" />
             <span class="slider"></span>
           </div>
           <%}%>
         </div>
         <div class="form-container">
-          <h2>Manage admin status</h2>
+          <h2>Become an Admin</h2>
           <% if(!locals.membershipAccess?.admin){%>
           <form action="/membership/admin/status" method="post">
             <% if(locals.adminErrors){%> <%- include("partials/errors.ejs")%>
@@ -89,7 +89,7 @@
           >
             <p class="status-message"></p>
             <div class="error-container"></div>
-            <label class="toggle"></label>
+            <label></label>
             <input type="checkbox" name="adminToggle" class="admin-toggle" />
             <span class="slider"></span>
           </div>
