@@ -5,11 +5,11 @@ require("dotenv").config();
 const validateMemberPassword = [
   body("password")
     .notEmpty()
-    .withMessage("Secret password input can't be empty.")
+    .withMessage("Password input can't be empty.")
     .custom((value, { req }) => {
       return value === process.env.MEMBER_PASSWORD;
     })
-    .withMessage("Wrong password, please read the hint and try again"),
+    .withMessage("Wrong password, please read the hint and try again."),
 ];
 
 const validateAdminPassword = [
@@ -19,7 +19,7 @@ const validateAdminPassword = [
     .custom((value, { req }) => {
       return value === process.env.ADMIN_PASSWORD;
     })
-    .withMessage("Wrong password, please try again"),
+    .withMessage("Wrong password, please try again."),
 ];
 
 const enableMemberAccess = [

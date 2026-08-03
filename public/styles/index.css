@@ -60,7 +60,7 @@ nav{
     gap:1rem;
 }
 
-.link-container img, footer img{
+.link-container svg, footer svg{
     height: 30px;
 }
 
