@@ -213,6 +213,13 @@ main form {
   align-items: center;
 }
 
+.member-toggle-container,
+.admin-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
 main h2 {
   font: var(--h3ui);
 }
@@ -247,6 +254,7 @@ main button:hover {
   height: 1rem;
   accent-color: var(--colora);
 }
+
 input:hover {
   cursor: pointer;
 }

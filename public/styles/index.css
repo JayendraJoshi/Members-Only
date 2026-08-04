@@ -184,7 +184,8 @@ main h1 {
   font: var(--h1ui);
 }
 
-.auth-message-page, .error-message-page {
+.auth-message-page,
+.error-message-page {
   display: flex;
   place-content: center;
   text-align: center;
@@ -206,7 +207,7 @@ main svg {
 .errors-container {
   margin-bottom: var(--margin-l);
   font: var(--pui);
-   display: none;
+  display: none;
   text-align: left;
 }
 
