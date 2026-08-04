@@ -55,7 +55,9 @@ p {
   --gray90: hsl(0, 0%, 90%);
   --gray95: hsl(0, 0%, 95%);
   --colora: hsl(258 48% 38%);
+  --colora-hover: hsl(258 48% 48%);
   --colora2: hsl(258 55% 80%);
+  --color2-hover: hsl(258 55% 90%);
 
   /*margins*/
   --margin-xxs: 0.25rem;
@@ -92,7 +94,7 @@ p {
   --space-4: 0.5rem;
 
   /*border-radius*/
-  --radius-basic:8px;
+  --radius-basic: 8px;
 
   /*page-content-width*/
   --max-width: 1400px;
@@ -199,7 +201,7 @@ main form {
   justify-content: center;
   gap: var(--space-3);
   flex-grow: 1;
-  align-items:center;
+  align-items: center;
 }
 
 main h2 {
@@ -221,21 +223,22 @@ main form input {
 
 main button {
   background-color: var(--colora2);
-  color:var(--gray10);
-  border-radius: var(--radius-basic); 
+  color: var(--gray10);
+  border-radius: var(--radius-basic);
 }
 
-main button:hover{
+main button:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+  background-color: var(--color2-hover);
 }
 
-
-.admin-toggle, .member-toggle{
-    width: 1rem;
-    height:1rem;
-    accent-color: var(--colora);
+.admin-toggle,
+.member-toggle {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--colora);
 }
-input:hover{
+input:hover {
   cursor: pointer;
 }
 

@@ -55,7 +55,9 @@
         <h1>Messages</h1>
         <% if(locals.currentUser){ %>
         <form class="open-message-dialog">
-          <p class="server-error"></p>
+          <div class="errors-container">
+            <p class="server-error"></p>
+          </div>
           <button type="button" class="open-dialog-button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -66,20 +68,25 @@
           </button>
         </form>
         <% }%>
+        <% if(locals.messages?.length!=0){%>
         <div class="messages-container">
           <% if(locals.failedFetch){%>
-          <p>
-            We couldn't load the messages right now, please try again later.
-          </p>
+          <div class="errors-container">
+            <p>
+              We couldn't load the messages right now, please try again later.
+            </p>
+          </div>
           <%}%>
-          <% if(locals.messages){%>
           <% messages.forEach(message=>{%>
           <div class="message-card">
             <%if (locals.failedDeletion && locals.failedDeleteMessageId ===
             message.id){%>
-            <p>
-              We couldn't delete the message right now, please try again later.
-            </p>
+            <div class="errors-container">
+              <p>
+                We couldn't delete the message right now, please try again
+                later.
+              </p>
+            </div>
             <%}%>
             <div class="message-data-container title-container">
               <p>Title</p>
@@ -108,12 +115,14 @@
             <%}%>
           </div>
           <%})%>
-          <%}%>
         </div>
+        <%}else{%>
+        <h2 class="empty-content-placeholder">No messages added yet...</h2>
+        <%}%>
         <dialog>
           <form class="message-form" method="post" action="/">
             <h3>Add message</h3>
-            <div class="error-container"></div>
+            <div class="errors-container"></div>
             <label for="title">Title<input id="title" name="title" /></label>
             <label for="text"
               >Text<textarea id="text" name="text"></textarea>

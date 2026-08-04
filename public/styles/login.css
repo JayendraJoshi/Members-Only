@@ -43,7 +43,6 @@ p {
   text-wrap: pretty;
 }
 
-
 /*Variables*/
 
 :root {
@@ -55,7 +54,9 @@ p {
   --gray90: hsl(0, 0%, 90%);
   --gray95: hsl(0, 0%, 95%);
   --colora: hsl(258 48% 38%);
+  --colora-hover: hsl(258 48% 48%);
   --colora2: hsl(258 55% 80%);
+  --color2-hover: hsl(258 55% 90%);
 
   /*margins*/
   --margin-xxs: 0.25rem;
@@ -161,7 +162,9 @@ main {
   margin-inline: auto;
 }
 
-.header-wrapper, .main-wrapper, main{
+.header-wrapper,
+.main-wrapper,
+main {
   padding: var(--space-1);
 }
 
@@ -170,9 +173,9 @@ main {
   display: flex;
 }
 
-.errors-container{
+.errors-container {
   margin-bottom: var(--margin-l);
-  font:var(--pui);
+  font: var(--bigui);
 }
 
 main {
@@ -188,44 +191,53 @@ main {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
-main h1{
-  font:var(--h1ui);
-  margin-bottom:var(--margin-xl);
+main h1 {
+  font: var(--h1ui);
+  margin-bottom: var(--margin-xl);
 }
 
 main button {
   background-color: var(--colora2);
-  color:var(--gray10);
-  border-radius: var(--radius-basic); 
+  color: var(--gray10);
+  border-radius: var(--radius-basic);
   margin-bottom: var(--margin-l);
-  margin-top:var(--margin-l);
-  padding:var(--space-4) var(--space-1);
+  margin-top: var(--margin-l);
+  padding: var(--space-4) var(--space-1);
 }
 
-main p{
-  font:var(--pui);
+main button:hover {
+  background-color: var(--color2-hover);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
 }
 
-main p a{
-  color:var(--gray90)
+main p {
+  font: var(--pui);
 }
 
-main form{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+main p a {
+  color: var(--gray90);
 }
 
-main form label{
-    display:flex;
-    flex-direction: column;
-    font:var(--bigui);
-    margin-bottom: var(--margin-m);;
+main p a:hover {
+  font-weight: bold;
 }
 
-input{
-  margin-top:var(--margin-xxs)
+main form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main form label {
+  display: flex;
+  flex-direction: column;
+  font: var(--bigui);
+  margin-bottom: var(--margin-m);
+}
+
+input {
+  margin-top: var(--margin-xxs);
 }
 
 .footer-wrapper {

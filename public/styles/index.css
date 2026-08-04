@@ -54,7 +54,9 @@ p {
   --gray90: hsl(0, 0%, 90%);
   --gray95: hsl(0, 0%, 95%);
   --colora: hsl(258 48% 38%);
+  --colora-hover: hsl(258 48% 48%);
   --colora2: hsl(258 55% 80%);
+  --color2-hover: hsl(258 55% 90%);
 
   /*margins*/
   --margin-xxs: 0.25rem;
@@ -182,12 +184,18 @@ main svg {
   color: var(--colora);
 }
 
-main .open-dialog-button {
+.open-dialog-button {
   background: none;
   border: none;
   margin-top: var(--margin-l);
   margin-bottom: var(--margin-m);
 }
+
+.errors-container {
+  margin-bottom: var(--margin-l);
+  font: var(--pui);
+}
+
 dialog {
   padding: var(--space-1);
   border-radius: var(--radius-basic);
@@ -220,13 +228,26 @@ dialog button {
   border-radius: var(--radius-basic);
 }
 
+dialog button:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+  background-color: var(--color2-hover);
+}
+
 dialog .button-container {
   display: flex;
   justify-content: space-around;
   flex-grow: 1;
 }
-.error-container {
+.errors-container {
   display: none;
+  margin-bottom: var(--margin-l);
+  font: var(--bigui);
+  text-align: left;
+}
+
+.empty-content-placeholder {
+  font: var(--h2ui);
+  margin-top: var(--margin-xxl);
 }
 
 .messages-container {
@@ -258,6 +279,11 @@ dialog .button-container {
   background-color: var(--colora);
   border-radius: var(--radius-basic);
   color: var(--gray90);
+}
+
+.message-card button:hover {
+  background-color: var(--colora-hover);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
 }
 .message-data-container {
   display: flex;

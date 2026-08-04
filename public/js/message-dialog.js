@@ -11,7 +11,7 @@ closeDialogButton.addEventListener("click", (event) => {
   dialog.close();
 });
 messageForm.addEventListener("submit", async (event) => {
-  const errorContainer = document.querySelector("dialog .error-container");
+  const errorContainer = document.querySelector("dialog .errors-container");
   errorContainer.textContent = "";
   event.preventDefault();
   const formData = new FormData(messageForm);
