@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("node:path");
 const signUpController = require("./controllers/sign-up-controller");
-const membershipController = require("./controllers/membership-controller");
+const profileController = require("./controllers/profile-controller");
 const messageController = require("./controllers/message-controller");
 const passport = require("./config/passport").passport;
 const authenticateUser = require("./config/passport").authenticateUser;
@@ -24,9 +24,9 @@ app.use(
 );
 app.use(passport.session());
 app.use((req, res, next) => {
-  req.session.membershipAccess ||= { member: false, admin: false };
+  req.session.profileAccess ||= { member: false, admin: false };
   res.locals.currentUser = req.user;
-  res.locals.membershipAccess = req.session.membershipAccess;
+  res.locals.profileAccess = req.session.profileAccess;
   next();
 });
 
@@ -40,11 +40,7 @@ app.get("/login", (req, res) => {
   res.render("login", { failedLogin: req.query.failed === "1" });
 });
 
-app.get(
-  "/membership",
-  authenticateUser,
-  membershipController.renderMembershipPage,
-);
+app.get("/profile", authenticateUser, profileController.renderProfilePage);
 
 app.post("/", messageController.addMessage);
 
@@ -67,19 +63,19 @@ app.post("/logout", async (req, res, next) => {
 });
 
 app.post(
-  "/membership/member/status",
+  "/profile/member/status",
   authenticateUser,
-  membershipController.enableMemberAccess,
+  profileController.enableMemberAccess,
 );
 
 app.post(
-  "/membership/admin/status",
+  "/profile/admin/status",
   authenticateUser,
-  membershipController.enableAdminAccess,
+  profileController.enableAdminAccess,
 );
 
-app.post("/membership/member/change", membershipController.toggleMemberStatus);
-app.post("/membership/admin/change", membershipController.toggleAdminStatus);
+app.post("/profile/member/change", profileController.toggleMemberStatus);
+app.post("/profile/admin/change", profileController.toggleAdminStatus);
 
 app.post("/sign-up", signUpController.signUpUser);
 

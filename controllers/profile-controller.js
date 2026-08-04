@@ -29,10 +29,10 @@ const enableMemberAccess = [
     if (!errors.isEmpty()) {
       return res
         .status(401)
-        .render("membership", { errors: errors.array(), memberErrors: true });
+        .render("profile", { errors: errors.array(), memberErrors: true });
     } else {
-      req.session.membershipAccess.member = true;
-      return res.redirect("/membership");
+      req.session.profileAccess.member = true;
+      return res.redirect("/profile");
     }
   },
 ];
@@ -44,10 +44,10 @@ const enableAdminAccess = [
     if (!errors.isEmpty()) {
       return res
         .status(401)
-        .render("membership", { errors: errors.array(), adminErrors: true });
+        .render("profile", { errors: errors.array(), adminErrors: true });
     } else {
-      req.session.membershipAccess.admin = true;
-      return res.redirect("/membership");
+      req.session.profileAccess.admin = true;
+      return res.redirect("/profile");
     }
   },
 ];
@@ -84,9 +84,9 @@ const toggleAdminStatus = async (req, res, next) => {
   }
 };
 
-const renderMembershipPage = async (req, res, next) => {
+const renderProfilePage = async (req, res, next) => {
   const user = req.user;
-  return res.render("membership", {
+  return res.render("profile", {
     memberStatus: user.ismember,
     adminStatus: user.isadmin,
   });
@@ -97,5 +97,5 @@ module.exports = {
   enableAdminAccess,
   toggleMemberStatus,
   toggleAdminStatus,
-  renderMembershipPage,
+  renderProfilePage,
 };

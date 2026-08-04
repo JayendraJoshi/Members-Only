@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Members only</title>
-    <script defer src="/js/membership.js"></script>
+    <script defer src="/js/profile.js"></script>
     <link rel="stylesheet" href="/styles/profile.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
@@ -42,8 +42,8 @@
       <main>
         <div class="form-container">
           <h2>Become a Member</h2>
-          <% if(!locals.membershipAccess?.member){%>
-          <form action="/membership/member/status" method="post">
+          <% if(!locals.profileAccess?.member){%>
+          <form action="/profile/member/status" method="post">
             <% if(locals.memberErrors){%> <%- include("partials/errors.ejs")%>
             <%}%>
 
@@ -55,7 +55,7 @@
             <button type="submit">Submit</button>
           </form>
           <%}%>
-          <% if(locals.membershipAccess?.member){%>
+          <% if(locals.profileAccess?.member){%>
           <div
             class="member-toggle-container"
             data-status="<%= locals.memberStatus ? 'true' : 'false' %>"
@@ -70,8 +70,8 @@
         </div>
         <div class="form-container">
           <h2>Become an Admin</h2>
-          <% if(!locals.membershipAccess?.admin){%>
-          <form action="/membership/admin/status" method="post">
+          <% if(!locals.profileAccess?.admin){%>
+          <form action="/profile/admin/status" method="post">
             <% if(locals.adminErrors){%> <%- include("partials/errors.ejs")%>
             <%}%>
             <label for="adminPassword"
@@ -82,7 +82,7 @@
             <button type="submit">Submit</button>
           </form>
           <%}%>
-          <% if(locals.membershipAccess?.admin){%>
+          <% if(locals.profileAccess?.admin){%>
           <div
             class="admin-toggle-container"
             data-status="<%= locals.adminStatus ? 'true' : 'false' %>"
