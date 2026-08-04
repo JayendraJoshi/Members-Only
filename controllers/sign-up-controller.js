@@ -54,7 +54,7 @@ const signUpUser = [
       const user = await db.insertUser(
         firstname,
         lastname,
-        username,
+        username.toLowerCase(),
         hashedPassword,
       );
       req.login(user, (error) => {
