@@ -150,6 +150,12 @@ button:hover {
   cursor: pointer;
 }
 
+.header-wrapper,
+.main-wrapper,
+main {
+  padding: var(--space-1);
+}
+
 .header-wrapper {
   min-height: 10vh;
   background-color: var(--gray10);
@@ -158,7 +164,6 @@ button:hover {
 
 header,
 main {
-  padding: var(--space-1);
   max-width: var(--max-width);
   margin-inline: auto;
 }
@@ -246,7 +251,7 @@ dialog .button-container {
 }
 
 .empty-content-placeholder {
-  font: var(--h2ui);
+  font: var(--h3ui);
   margin-top: var(--margin-xxl);
 }
 
@@ -309,13 +314,13 @@ dialog .button-container {
   min-height: 5vh;
   background-color: var(--gray10);
   color: var(--gray90);
+  padding: var(--space-3) var(--space-1);
 }
 
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--space-3);
   gap: var(--space-3);
   max-width: var(--max-width);
   margin-inline: auto;
