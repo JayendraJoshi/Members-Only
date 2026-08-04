@@ -184,6 +184,13 @@ main h1 {
   font: var(--h1ui);
 }
 
+.auth-message-page, .error-message-page {
+  display: flex;
+  place-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
 main svg {
   height: 40px;
   color: var(--colora);
@@ -199,6 +206,8 @@ main svg {
 .errors-container {
   margin-bottom: var(--margin-l);
   font: var(--pui);
+   display: none;
+  text-align: left;
 }
 
 dialog {
@@ -242,12 +251,6 @@ dialog .button-container {
   display: flex;
   justify-content: space-around;
   flex-grow: 1;
-}
-.errors-container {
-  display: none;
-  margin-bottom: var(--margin-l);
-  font: var(--bigui);
-  text-align: left;
 }
 
 .empty-content-placeholder {
@@ -322,7 +325,6 @@ footer {
   justify-content: center;
   align-items: center;
   gap: var(--space-3);
-  max-width: var(--max-width);
   margin-inline: auto;
   max-width: var(--max-width);
 }

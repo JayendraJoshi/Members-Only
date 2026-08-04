@@ -254,7 +254,6 @@ footer {
   gap: var(--space-3);
   max-width: var(--max-width);
   margin-inline: auto;
-  max-width: var(--max-width);
 }
 
 @media (max-width: 750px) {

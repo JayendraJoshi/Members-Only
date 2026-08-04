@@ -14,14 +14,14 @@ const memberToggleContainer = document.querySelector(
 );
 const adminToggleContainer = document.querySelector(".admin-toggle-container");
 
-const memberSlider = document.querySelector(".member-toggle-container .slider");
-const adminSlider = document.querySelector(".admin-toggle-container .slider");
+const memberLabel = document.querySelector(".member-toggle-container label");
+const adminLabel = document.querySelector(".admin-toggle-container label");
 
 if (memberToggle) {
   memberToggle.checked = memberToggleContainer.dataset.status === "true";
-  memberSlider.textContent = memberToggle.checked ? "Yes" : "No";
+  memberLabel.textContent = memberToggle.checked ? "Yes" : "No";
   memberToggle.addEventListener("change", async (event) => {
-    memberSlider.textContent = memberToggle.checked ? "Yes" : "No";
+    memberLabel.textContent = memberToggle.checked ? "Yes" : "No";
     const previousChecked = !event.target.checked;
     memberErrorContainer.textContent = "";
     const params = new URLSearchParams({
@@ -49,9 +49,9 @@ if (memberToggle) {
 
 if (adminToggle) {
   adminToggle.checked = adminToggleContainer.dataset.status === "true";
-  adminSlider.textContent = adminToggle.checked ? "Yes" : "No";
+  adminLabel.textContent = adminToggle.checked ? "Yes" : "No";
   adminToggle.addEventListener("change", async (event) => {
-    adminSlider.textContent = adminToggle.checked ? "Yes" : "No";
+    adminLabel.textContent = adminToggle.checked ? "Yes" : "No";
     const previousChecked = !event.target.checked;
     adminErrorContainer.textContent = "";
     const params = new URLSearchParams({

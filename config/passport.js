@@ -48,7 +48,7 @@ const authenticateUser = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   } else {
-    res.send("<h1>Not authenticated!</h1>");
+    res.render("unauthenticated");
   }
 };
 

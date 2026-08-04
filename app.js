@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+app.disable("x-powered-by");
 const path = require("node:path");
 const signUpController = require("./controllers/sign-up-controller");
 const profileController = require("./controllers/profile-controller");

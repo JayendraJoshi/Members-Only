@@ -63,8 +63,15 @@
           >
             <p class="status-message"></p>
             <div class="errors-container"></div>
-            <label></label>
-            <input type="checkbox" name="memberToggle" class="member-toggle" />
+            <label for="member-toggle"
+              ><%= locals.adminStatus ? 'Yes' : 'No' %></label
+            >
+            <input
+              type="checkbox"
+              name="memberToggle"
+              id="member-toggle"
+              class="member-toggle"
+            />
             <span class="slider"></span>
           </div>
           <%}%>
@@ -90,9 +97,15 @@
           >
             <p class="status-message"></p>
             <div class="errors-container"></div>
-            <label></label>
-            <input type="checkbox" name="adminToggle" class="admin-toggle" />
-            <span class="slider"></span>
+            <label for="admin-toggle"
+              ><%= locals.adminStatus ? 'Yes' : 'No' %></label
+            >
+            <input
+              type="checkbox"
+              name="adminToggle"
+              class="admin-toggle"
+              id="admin-toggle"
+            />
           </div>
           <%}%>
         </div>
