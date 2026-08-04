@@ -17,6 +17,12 @@ const insertUser = async (firstname, lastname, username, password) => {
   return rows[0];
 };
 
+const selectUsername = async (user_id) => {
+  const query = `SELECT username FROM users WHERE id = $1;`;
+  const { rows } = await pool.query(query, [user_id]);
+  return rows[0];
+};
+
 const setIsMemberTrue = async (user_id) => {
   const query = `UPDATE users SET ismember = true WHERE id = $1;`;
   await pool.query(query, [user_id]);
@@ -63,4 +69,5 @@ module.exports = {
   setIsAdminTrue,
   setIsAdminFalse,
   deleteMessage,
+  selectUsername,
 };

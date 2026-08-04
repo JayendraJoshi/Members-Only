@@ -99,7 +99,7 @@
             <%if(locals.currentUser?.ismember || locals.currentUser?.isadmin){%>
             <div class="message-data-container username-container">
               <p>Username</p>
-              <%= locals.currentUser.username %>
+              <%= message.author %>
             </div>
             <div class="message-data-container timestamp-container">
               <p>Timestamp</p>

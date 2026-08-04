@@ -35,7 +35,15 @@ const addMessage = [
 const renderIndexPage = async (req, res) => {
   try {
     const messages = await db.selectAllMessages();
-    res.render("index", { messages: messages });
+    const messagesWithAuthor = await Promise.all(
+      messages.map(async (message) => {
+        const row = await db.selectUsername(message.user_id);
+        message.author = row.username;
+        return message;
+      }),
+    );
+
+    res.render("index", { messages: messagesWithAuthor });
   } catch (error) {
     res.render("index", { messages: [], failedFetch: true });
     console.error(error);
@@ -49,11 +57,18 @@ const deleteMessage = async (req, res) => {
     res.status(200).redirect("/");
   } catch (error) {
     const messages = await db.selectAllMessages();
+    const messagesWithAuthor = await Promise.all(
+      messages.map(async (message) => {
+        const username = await db.selectUsername(message.user_id);
+        message.author = username;
+        return message;
+      }),
+    );
     console.error(error);
     return res.render("index", {
       failedDeletion: true,
       failedDeleteMessageId: Number(message_id),
-      messages: messages,
+      messages: messagesWithAuthor,
     });
   }
 };

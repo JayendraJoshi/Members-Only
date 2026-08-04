@@ -63,9 +63,15 @@ const signUpUser = [
       });
     } catch (error) {
       console.error(error);
-      return res.status(500).render("sign-up", {
-        failedUserCreation: true,
-      });
+      if (error.code === "23505") {
+        return res.status(500).render("sign-up", {
+          usernameTaken: true,
+        });
+      } else {
+        return res.status(500).render("sign-up", {
+          failedUserCreation: true,
+        });
+      }
     }
   },
 ];
