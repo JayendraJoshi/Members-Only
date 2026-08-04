@@ -18,25 +18,25 @@ const validateSignUpData = [
   body("firstname")
     .trim()
     .notEmpty()
-    .withMessage("Firstname input can't be empty")
-    .isAlpha()
+    .withMessage("Firstname input can't be empty.")
+    .isAlpha(undefined, { ignore: " -'" })
     .withMessage("Firstname can only contain alphabet letters.")
     .isLength({ max: 100 })
-    .withMessage("Firstname can't be longer than 100 characters"),
+    .withMessage("Firstname can't be longer than 100 characters."),
   body("lastname")
     .trim()
     .notEmpty()
     .withMessage("Lastname input can't be empty.")
-    .isAlpha()
+    .isAlpha(undefined, { ignore: " -'" })
     .withMessage("Lastname can only contain alphabet letters.")
     .isLength({ max: 100 })
-    .withMessage("Lastname can't be longer than 100 characters"),
+    .withMessage("Lastname can't be longer than 100 characters."),
   body("username")
     .trim()
     .notEmpty()
-    .withMessage("Username input can't be empty")
+    .withMessage("Username input can't be empty.")
     .isLength({ max: 100 })
-    .withMessage("Username can't be longer than 100 characters"),
+    .withMessage("Username can't be longer than 100 characters."),
 ];
 
 const signUpUser = [

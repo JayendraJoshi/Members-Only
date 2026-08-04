@@ -81,6 +81,14 @@
               We couldn't delete the message right now, please try again later.
             </p>
             <%}%>
+            <div class="message-data-container title-container">
+              <p>Title</p>
+              <p><%= message.title %></p>
+            </div>
+            <div class="message-data-container text-container">
+              <p>Text</p>
+              <p><%= message.text %></p>
+            </div>
             <%if(locals.currentUser?.ismember || locals.currentUser?.isadmin){%>
             <div class="message-data-container username-container">
               <p>Username</p>
@@ -91,15 +99,6 @@
               <p><%= message.timestamp %></p>
             </div>
             <%}%>
-            <div class="message-data-container title-container">
-              <p>Title</p>
-              <p><%= message.title %></p>
-            </div>
-            <div class="message-data-container text-container">
-              <p>Text</p>
-              <p><%= message.text %></p>
-            </div>
-
             <% if(locals.currentUser?.isadmin){%>
             <div class="message-data-container">
               <form action="/message/delete/<%= message.id %>" method="post">
@@ -116,7 +115,9 @@
             <h3>Add message</h3>
             <div class="error-container"></div>
             <label for="title">Title<input id="title" name="title" /></label>
-            <label for="text">Text<input id="text" name="text" /></label>
+            <label for="text"
+              >Text<textarea id="text" name="text"></textarea>
+            </label>
             <div class="button-container">
               <button class="cancel-button" type="button">Cancel</button>
               <button class="add-button" type="submit">Add</button>

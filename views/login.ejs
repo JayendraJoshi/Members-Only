@@ -10,9 +10,16 @@
     <div class="header-wrapper">
       <header>
         <nav>
-          <h1>Members Only Club</h1>
+          <h1><a href="/">Members Only Club</a></h1>
           <div class="link-container">
-            <a href="/"><img src="/icons/messages.svg" /></a>
+            <a href="/">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                <path
+                  d="M576 304C576 436.5 461.4 544 320 544C282.9 544 247.7 536.6 215.9 523.3L97.5 574.1C88.1 578.1 77.3 575.8 70.4 568.3C63.5 560.8 62 549.8 66.8 540.8L115.6 448.6C83.2 408.3 64 358.3 64 304C64 171.5 178.6 64 320 64C461.4 64 576 171.5 576 304z"
+                />
+              </svg>
+            </a>
           </div>
         </nav>
       </header>
@@ -22,7 +29,10 @@
         <h1>Login</h1>
         <form method="post" action="/login">
           <% if(locals.failedLogin){%>
-          <p>No matching User found, please try again.</p>
+          <div class="errors-container">
+            <p>No matching User found, please try again.</p>
+          </div>
+
           <%}%>
           <label for="username"
             >Username<input id="username" name="username"
