@@ -103,7 +103,7 @@ p {
 /* Styles*/
 
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   font-family: var(--ff);
@@ -154,7 +154,7 @@ button:hover {
 }
 
 .header-wrapper {
-  min-height: 10vh;
+  min-height: 10dvh;
   background-color: var(--gray10);
   color: var(--gray90);
 }
@@ -252,7 +252,7 @@ input:hover {
 }
 
 .footer-wrapper {
-  min-height: 5vh;
+  min-height: 5dvh;
   background-color: var(--gray10);
   color: var(--gray90);
 }

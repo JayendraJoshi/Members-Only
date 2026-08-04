@@ -100,7 +100,7 @@ p {
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   font-family: var(--ff);
@@ -157,7 +157,7 @@ main {
 }
 
 .header-wrapper {
-  min-height: 10vh;
+  min-height: 10dvh;
   background-color: var(--gray10);
   color: var(--gray90);
 }
@@ -311,7 +311,7 @@ dialog .button-container {
 }
 
 .footer-wrapper {
-  min-height: 5vh;
+  min-height: 5dvh;
   background-color: var(--gray10);
   color: var(--gray90);
   padding: var(--space-3) var(--space-1);
