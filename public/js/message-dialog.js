@@ -3,11 +3,11 @@ const openDialogButton = document.querySelector(".open-message-dialog button");
 const closeDialogButton = document.querySelector("dialog .cancel-button");
 const messageForm = document.querySelector(".message-form");
 if (openDialogButton) {
-  openDialogButton.addEventListener("click", (event) => {
+  openDialogButton.addEventListener("click", () => {
     dialog.showModal();
   });
 }
-closeDialogButton.addEventListener("click", (event) => {
+closeDialogButton.addEventListener("click", () => {
   dialog.close();
 });
 messageForm.addEventListener("submit", async (event) => {

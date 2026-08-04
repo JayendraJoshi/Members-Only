@@ -6,8 +6,6 @@ const memberErrorContainer = document.querySelector(
 const adminErrorContainer = document.querySelector(
   ".admin-toggle-container .errors-container",
 );
-const memberMessageElement = document.querySelector(".member-toggle p");
-const adminMessageElement = document.querySelector(".admin-toggle p");
 
 const memberToggleContainer = document.querySelector(
   ".member-toggle-container",

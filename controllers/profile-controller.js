@@ -1,12 +1,12 @@
 const db = require("../config/database");
-const { body, validationResult, matchedData } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 require("dotenv").config();
 
 const validateMemberPassword = [
   body("password")
     .notEmpty()
     .withMessage("Password input can't be empty.")
-    .custom((value, { req }) => {
+    .custom((value) => {
       return value === process.env.MEMBER_PASSWORD;
     })
     .withMessage("Wrong password, please read the hint and try again."),
@@ -16,7 +16,7 @@ const validateAdminPassword = [
   body("password")
     .notEmpty()
     .withMessage("Input can't be empty.")
-    .custom((value, { req }) => {
+    .custom((value) => {
       return value === process.env.ADMIN_PASSWORD;
     })
     .withMessage("Wrong password, please try again."),
@@ -52,7 +52,7 @@ const enableAdminAccess = [
   },
 ];
 
-const toggleMemberStatus = async (req, res, next) => {
+const toggleMemberStatus = async (req, res) => {
   try {
     const checked = req.body.checked === "true";
     const user = req.user;
@@ -68,7 +68,7 @@ const toggleMemberStatus = async (req, res, next) => {
   }
 };
 
-const toggleAdminStatus = async (req, res, next) => {
+const toggleAdminStatus = async (req, res) => {
   try {
     const checked = req.body.checked === "true";
     if (checked) {
@@ -83,7 +83,7 @@ const toggleAdminStatus = async (req, res, next) => {
   }
 };
 
-const renderProfilePage = async (req, res, next) => {
+const renderProfilePage = async (req, res) => {
   const user = req.user;
   return res.render("profile", {
     memberStatus: user.ismember,
