@@ -1,10 +1,10 @@
 const memberToggle = document.querySelector(".member-toggle");
 const adminToggle = document.querySelector(".admin-toggle");
 const memberErrorContainer = document.querySelector(
-  ".member-toggle-container .error-container",
+  ".member-toggle-container .errors-container",
 );
 const adminErrorContainer = document.querySelector(
-  ".admin-toggle-container .error-container",
+  ".admin-toggle-container .errors-container",
 );
 const memberMessageElement = document.querySelector(".member-toggle p");
 const adminMessageElement = document.querySelector(".admin-toggle p");
@@ -28,7 +28,7 @@ if (memberToggle) {
       checked: String(event.target.checked),
     });
     try {
-      const response = await fetch("/membership/member/change", {
+      const response = await fetch("/profile/member/change", {
         method: "post",
         body: params,
       });
@@ -58,7 +58,7 @@ if (adminToggle) {
       checked: String(event.target.checked),
     });
     try {
-      const response = await fetch("/membership/admin/change", {
+      const response = await fetch("/profile/admin/change", {
         method: "post",
         body: params,
       });

@@ -326,3 +326,44 @@ footer {
   margin-inline: auto;
   max-width: var(--max-width);
 }
+
+@media (max-width: 850px) {
+  h1 a {
+    font: var(--h2);
+  }
+  nav {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+}
+
+@media (max-width: 650px) {
+  h1 a {
+    font: var(--h3);
+  }
+  nav {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  main h1 {
+    font: var(--h2ui);
+  }
+  .link-container svg {
+    height: 30px;
+  }
+  .messages-container {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 450px) {
+  header h1 {
+    text-align: center;
+  }
+  main {
+    padding: 0;
+  }
+  main h1 {
+    padding-top: var(--space-1);
+  }
+}
