@@ -50,7 +50,9 @@ const insertMessage = async (title, text, user_id) => {
 };
 
 const selectAllMessages = async () => {
-  const result = await pool.query(`SELECT * FROM messages;`);
+  const result = await pool.query(
+    `SELECT * FROM messages ORDER BY "timestamp" DESC;`,
+  );
   return result.rows;
 };
 
