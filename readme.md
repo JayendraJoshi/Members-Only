@@ -43,9 +43,10 @@ This project also strengthened my understanding of input validation and error ha
 2. Install the dependencies:
    - `npm install`
 
-3. Create a PostgreSQL database and set the DATABASE_URL environment variable.
+3. Create a PostgreSQL database alongside 'users' and 'messages' tables.
 
 4. Set the following environment variables:
+   - `DATABASE_URL`
    - `SESSION_SECRET`
    - `MEMBER_PASSWORD`
    - `ADMIN_PASSWORD`
